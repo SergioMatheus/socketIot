@@ -19,7 +19,7 @@ public class Servidor {
 				System.out.println("Cliente conectado do IP " + cliente.getInetAddress().getHostAddress());
 				ObjectOutputStream mensagemServidor = new ObjectOutputStream(cliente.getOutputStream());
 				mensagemServidor.flush();
-				mensagemServidor.writeObject("String aleatória enviada ao Cliente");
+				mensagemServidor.writeObject("String aleatória enviada ao Cliente.");
 				mensagemServidor.close();
 		        cliente.close();
 			}
