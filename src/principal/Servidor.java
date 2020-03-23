@@ -28,7 +28,7 @@ public class Servidor {
 				out.println("String aleatoria enviada ao Cliente." + "\r\n");
 				Scanner entrada = new Scanner(cliente.getInputStream());
 				while(entrada.hasNext()) {
-					System.out.println(entrada.next());
+					System.out.println(entrada.nextLine());
 				}
 //				mensagemServidor.close();
 //		        cliente.close();
