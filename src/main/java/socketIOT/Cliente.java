@@ -1,9 +1,10 @@
 package socketIOT;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -34,11 +35,11 @@ public class Cliente {
 					Socket cliente = new Socket(ipSelecionado, portaSelecionada.intValue());
 
 					while (true) {
-						ObjectInputStream entrada = new ObjectInputStream(cliente.getInputStream());
-						String mensagemDoServidor = (String) entrada.readObject();
+						BufferedReader entrada = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
+						String mensagemDoServidor = entrada.readLine();
 						System.out.println(mensagemDoServidor);
 					}
-
+					
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -48,6 +49,7 @@ public class Cliente {
 			} else {
 				System.out.println("Comando para conectar invalido");
 			}
+			sc.close();
 		} catch (Exception e) {
 			System.out.println("Erro: " + e.getMessage());
 		}

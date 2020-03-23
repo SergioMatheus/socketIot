@@ -5,11 +5,15 @@
 	    "porta": 8080
 	  },
 	   "Temperatura_2": {
-	    "ip": "192.168.100.2",
+	    "ip": "localhost",
 	    "porta": 8082
 	  },
 	   "Temperatura_3": {
 	    "ip": "192.168.1.15",
 	    "porta": 8080
+	  },
+	   "Temperatura_4": {
+	    "ip": "0.tcp.ngrok.io",
+	    "porta": 10116
 	  }
 	}

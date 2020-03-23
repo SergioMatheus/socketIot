@@ -1,10 +1,9 @@
 package socketIOT;
 
 import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Servidor {
 
@@ -13,16 +12,16 @@ public class Servidor {
 		ServerSocket servidor;
 		try {
 			int portaServer = 8082;
-			long delay = 5000L;
+			long delay = 50L;
 			servidor = new ServerSocket(portaServer);
 			System.out.println("Servidor iniciado na porta " + portaServer);
 			while (servidor.isBound()) {
 				Socket cliente = servidor.accept();
 				System.out.println("Cliente conectado do IP " + cliente.getInetAddress().getHostAddress());
-				ObjectOutputStream mensagemServidor = new ObjectOutputStream(cliente.getOutputStream());
+				PrintWriter mensagemServidor = new PrintWriter(cliente.getOutputStream(),true);
 				mensagemServidor.flush();
-				mensagemServidor.writeObject("Temperatura_2 Ativado " + delay + " " + "\r\n");
-				geraTemperatura(delay, cliente);
+				mensagemServidor.println("Temperatura Ativado " + delay + " " + "\r\n");
+				new Thread(new EnvioMensagemTemperatura(cliente, delay)).run();
 				mensagemServidor.close();
 				cliente.close();
 			}
@@ -30,18 +29,5 @@ public class Servidor {
 			e.printStackTrace();
 		}
 
-	}
-
-	private static void geraTemperatura(long delay, Socket cliente) throws IOException {
-		while (true) {
-			ObjectOutputStream Temperatura = new ObjectOutputStream(cliente.getOutputStream());
-			Temperatura.flush();
-			Temperatura.writeObject(ThreadLocalRandom.current().nextInt(0, 100) + "\r\n");
-			try {
-				Thread.sleep(delay);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 }
