@@ -27,7 +27,7 @@ public class Cliente {
 				String userInput = userInputBR.readLine();
 				if (userInput != null) {
 					out.flush();
-					out.println(userInput + "\r\n");
+					out.println(userInput);
 				}
 			}
 		} catch (SocketException e) {
