@@ -1,6 +1,5 @@
 package socketIOT;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.concurrent.ThreadLocalRandom;
@@ -33,10 +32,7 @@ public class EnvioMensagemTemperatura implements Runnable {
 				Temperatura.flush();
 				Temperatura.println(ThreadLocalRandom.current().nextInt(0, 60) + " oC");
 				Thread.sleep(delay);
-			} catch (InterruptedException e) {
-				condicaoLoop = false;
-				e.printStackTrace();
-			} catch (IOException e) {
+			} catch (Exception e) {
 				condicaoLoop = false;
 				e.printStackTrace();
 			}

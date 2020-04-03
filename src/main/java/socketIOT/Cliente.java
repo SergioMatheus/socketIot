@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ public class Cliente {
 			Scanner sc = new Scanner(System.in);
 			String texto = sc.nextLine();
 			String[] splited = texto.split("\\s+");
-			if (texto.toLowerCase().contains("conectar")) {
+			if (texto.toLowerCase().contains("conectar")||texto.toLowerCase().contains("CONECTAR")) {
 
 				JSONParser jsonParser = new JSONParser();
 
@@ -33,13 +34,17 @@ public class Cliente {
 					Long portaSelecionada = (Long) conector.get("porta");
 
 					Socket cliente = new Socket(ipSelecionado, portaSelecionada.intValue());
+					
+					PrintWriter mensagemServidor = new PrintWriter(cliente.getOutputStream(),true);
+					mensagemServidor.flush();
+					mensagemServidor.println(texto);
 
 					while (true) {
 						BufferedReader entrada = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
 						String mensagemDoServidor = entrada.readLine();
 						System.out.println(mensagemDoServidor);
 					}
-					
+
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {

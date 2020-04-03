@@ -1,19 +1,22 @@
-
-	{
-	  "Temperatura_1": {
-	    "ip": "192.168.1.17",
-	    "porta": 8080
-	  },
-	   "Temperatura_2": {
-	    "ip": "localhost",
-	    "porta": 8082
-	  },
-	   "Temperatura_3": {
-	    "ip": "192.168.1.15",
-	    "porta": 8080
-	  },
-	   "Temperatura_4": {
-	    "ip": "0.tcp.ngrok.io",
-	    "porta": 10116
-	  }
-	}
+{
+  "Temperatura_J": {
+    "ip": "0.tcp.sa.ngrok.io",
+    "porta": 19920
+  },
+  "Temperatura_2": {
+    "ip": "localhost",
+    "porta": 8082
+  },
+  "Umidade": {
+    "ip": "0.tcp.sa.ngrok.io",
+    "porta": 11672
+  },
+  "Temperatura_L": {
+    "ip": "0.tcp.sa.ngrok.io",
+    "porta": 14296
+  },
+  "Temperatura_K":{
+    "ip":"0.tcp.sa.ngrok.io",
+    "porta":18352
+  }
+}
